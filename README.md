@@ -2,6 +2,7 @@
 # Start H2 Database
 1. unzip h2-2022-06-13.zip
 2. run h2.sh
+ > if you get permission denied, use chomod command : chmod +x h2.sh
 3. At first time, JDBC URL should be `jdbc:h2:~/test`
 
 ![img.png](img.png)
