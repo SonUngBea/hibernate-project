@@ -1,21 +1,34 @@
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Student {
+public class Student implements Serializable {
 	@Id
 	private Long id;
 
-	@Column(name = "name")
 	private String name;
 
-	@Column(name = "schoolId")
 	private Long schoolId;
 
-	@Column(name = "schoolName")
 	private String schoolName;
+
+	// Join with PK
+	// @ManyToOne
+	// @JoinColumn(name = "schoolId", insertable = false ,updatable = false)
+	// private School school;
+
+	// Join with Not PK
+	 @ManyToOne
+	 @JoinColumn(name = "schoolName", referencedColumnName = "name", insertable = false ,updatable = false)
+	 private School school;
+
+	public School getSchool() {
+		return school;
+	}
+
+	public void setSchool(School school) {
+		this.school = school;
+	}
 
 	public Long getId() {
 		return id;
@@ -56,6 +69,7 @@ public class Student {
 			", name='" + name + '\'' +
 			", schoolId=" + schoolId +
 			", schoolName='" + schoolName + '\'' +
+			", school=" + school +
 			'}';
 	}
 }
